@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import AuthButton from '../common/AuthButton'
+
 export default function Header() {
   return (
     <Head>
@@ -10,21 +12,27 @@ export default function Header() {
       <NavContainer>
         <Nav>
           <H1>meFit</H1>
-          <a href="/api/auth/login">Login</a>
+          <AuthButton link="/api/auth/login" primary>
+            Login
+          </AuthButton>
         </Nav>
       </NavContainer>
 
       <HeaderTextContainer>
         <HeaderText>
-          <h2>Tired of logging your exercises on paper?</h2>
-          <p>Sign up free now to calculate and track your workout</p>
+          <H2>Tired of logging your exercises on paper?</H2>
+          <P>Sign up free now to calculate and track your workout</P>
           <div>
-            <button>Login</button>
-            <button>Sign Up</button>
+            <AuthButton link="/api/auth/login" margin="0 20px 0 0">
+              Login
+            </AuthButton>
+            <AuthButton link="/api/auth/login" primary>
+              Sign Up
+            </AuthButton>
           </div>
         </HeaderText>
       </HeaderTextContainer>
-      <div>IOS and Android App coming soon!</div>
+      <Banner>Coming soon to Android and IOS!</Banner>
       <Opacity />
     </Head>
   )
@@ -49,7 +57,7 @@ const Opacity = styled.div`
   height: 100vh;
   width: 100vw;
   z-index: -1;
-  background-color: rgba(0, 0, 0, 0.95);
+  background-color: rgba(0, 0, 0, 0.65);
 `
 
 const NavContainer = styled.nav`
@@ -71,7 +79,7 @@ const Nav = styled.div`
 `
 
 const H1 = styled.h1`
-  font-weight: 800;
+  font-weight: 900;
 `
 
 const HeaderTextContainer = styled.div`
@@ -84,4 +92,26 @@ const HeaderTextContainer = styled.div`
 const HeaderText = styled.div`
   width: 80%;
   margin: 0 auto;
+`
+
+const H2 = styled.h2`
+  font-weight: 700;
+  font-size: 3rem;
+  color: #ab1139;
+`
+
+const P = styled.p`
+  font-weight: 100;
+  font-size: 1.5rem;
+`
+
+const Banner = styled.div`
+  position: absolute;
+  bottom: 0;
+  background-color: #ab1139;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  color: white;
+  font-weight: 700;
 `
