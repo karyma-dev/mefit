@@ -6,7 +6,7 @@ export default function Home() {
     <>
       <Header>
         <Video autoPlay muted loop>
-          <source src="/hero.mp4"/>
+          <source src="/hero.mp4" />
         </Video>
         <NavContainer>
           <Nav>
@@ -15,35 +15,29 @@ export default function Home() {
           </Nav>
         </NavContainer>
 
-        <div>
+        <Container>
           <h2>Tired of logging your exercises on paper?</h2>
           <p>Sign up free now to calculate and track your workout</p>
           <div>
             <button>Login</button>
             <button>Sign Up</button>
           </div>
-        </div>
-        <Opacity/>
+        </Container>
+        <Opacity />
       </Header>
       <div>IOS and Android App coming soon!</div>
       <main>
         <div>
           <h3>Simple and Easy</h3>
-          <p>
-            
-          </p>
+          <p></p>
         </div>
         <div>
           <h3>Access From Anywhere</h3>
-          <p>
-            
-          </p>
+          <p></p>
         </div>
         <div>
           <h3>Latest Research</h3>
-          <p>
-            
-          </p>
+          <p></p>
         </div>
         <footer>Copyright</footer>
       </main>
@@ -92,4 +86,9 @@ const Nav = styled.div`
 
 const H1 = styled.h1`
   font-weight: 800;
+`
+
+const Container = styled.div`
+  width: 80%;
+  z-index: 1;
 `
