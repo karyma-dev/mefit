@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 16px;
+    font-family: 'Noto Sans JP', sans-serif;
   }
 
   *, *:before, *:after {
