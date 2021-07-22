@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-size: 16px;
     font-family: 'Noto Sans JP', sans-serif;
+    overflow-x: hidden;
   }
 
   *, *:before, *:after {
@@ -39,11 +40,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   h2 {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 
   h3 {

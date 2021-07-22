@@ -1,14 +1,19 @@
 import React from 'react'
-import { styled } from 'styled-components'
+import styled from 'styled-components'
 
 export default function Home() {
   return (
     <>
-      <header>
-        <nav>
-          <h1>meFit</h1>
-          {/* <a href="/api/auth/login">Login</a> */}
-        </nav>
+      <Header>
+        <Video autoPlay muted loop>
+          <source src="/hero.mp4"/>
+        </Video>
+        <NavContainer>
+          <Nav>
+            <H1>meFit</H1>
+            <a href="/api/auth/login">Login</a>
+          </Nav>
+        </NavContainer>
 
         <div>
           <h2>Tired of logging your exercises on paper?</h2>
@@ -18,61 +23,26 @@ export default function Home() {
             <button>Sign Up</button>
           </div>
         </div>
-      </header>
+        <Opacity/>
+      </Header>
       <div>IOS and Android App coming soon!</div>
       <main>
         <div>
           <h3>Simple and Easy</h3>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus
-            harum ullam magnam cupiditate nostrum aliquam. Dolores quam ullam
-            perspiciatis? Quibusdam deserunt qui impedit natus debitis. Tempora
-            voluptatem vero culpa provident ex aut sapiente aliquid iste,
-            corporis, ipsam laudantium, illum accusamus autem rem facilis
-            aspernatur. Iusto voluptas deleniti quas voluptates delectus sit,
-            perspiciatis, pariatur placeat mollitia dolorum vero recusandae
-            suscipit excepturi, beatae autem molestiae sapiente repudiandae
-            dolore nisi temporibus? Laudantium officiis quibusdam vitae et enim
-            ut, dignissimos suscipit voluptas ullam accusamus iure, doloribus
-            accusantium architecto quod ad nesciunt rerum, impedit id magnam!
-            Nesciunt possimus quasi iure numquam, consequatur magni. Dicta,
-            iste.
+            
           </p>
         </div>
         <div>
           <h3>Access From Anywhere</h3>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus
-            harum ullam magnam cupiditate nostrum aliquam. Dolores quam ullam
-            perspiciatis? Quibusdam deserunt qui impedit natus debitis. Tempora
-            voluptatem vero culpa provident ex aut sapiente aliquid iste,
-            corporis, ipsam laudantium, illum accusamus autem rem facilis
-            aspernatur. Iusto voluptas deleniti quas voluptates delectus sit,
-            perspiciatis, pariatur placeat mollitia dolorum vero recusandae
-            suscipit excepturi, beatae autem molestiae sapiente repudiandae
-            dolore nisi temporibus? Laudantium officiis quibusdam vitae et enim
-            ut, dignissimos suscipit voluptas ullam accusamus iure, doloribus
-            accusantium architecto quod ad nesciunt rerum, impedit id magnam!
-            Nesciunt possimus quasi iure numquam, consequatur magni. Dicta,
-            iste.
+            
           </p>
         </div>
         <div>
           <h3>Latest Research</h3>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus
-            harum ullam magnam cupiditate nostrum aliquam. Dolores quam ullam
-            perspiciatis? Quibusdam deserunt qui impedit natus debitis. Tempora
-            voluptatem vero culpa provident ex aut sapiente aliquid iste,
-            corporis, ipsam laudantium, illum accusamus autem rem facilis
-            aspernatur. Iusto voluptas deleniti quas voluptates delectus sit,
-            perspiciatis, pariatur placeat mollitia dolorum vero recusandae
-            suscipit excepturi, beatae autem molestiae sapiente repudiandae
-            dolore nisi temporibus? Laudantium officiis quibusdam vitae et enim
-            ut, dignissimos suscipit voluptas ullam accusamus iure, doloribus
-            accusantium architecto quod ad nesciunt rerum, impedit id magnam!
-            Nesciunt possimus quasi iure numquam, consequatur magni. Dicta,
-            iste.
+            
           </p>
         </div>
         <footer>Copyright</footer>
@@ -80,3 +50,46 @@ export default function Home() {
     </>
   )
 }
+
+const Video = styled.video`
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+`
+
+const Header = styled.header`
+  height: 100vh;
+`
+
+const Opacity = styled.div`
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.95);
+`
+
+const NavContainer = styled.nav`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+`
+
+const Nav = styled.div`
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+const H1 = styled.h1`
+  font-weight: 800;
+`
