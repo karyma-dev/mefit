@@ -1,5 +1,5 @@
-import React from "react";
-import { styled } from "styled-components";
+import React from 'react'
+import { styled } from 'styled-components'
 
 export default function Home() {
   return (
@@ -78,5 +78,5 @@ export default function Home() {
         <footer>Copyright</footer>
       </main>
     </>
-  );
+  )
 }

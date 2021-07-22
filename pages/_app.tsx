@@ -1,11 +1,11 @@
-import React from "react";
-import { AppProps } from "next/app";
-import { createGlobalStyle } from "styled-components";
-import { UserProvider } from "@auth0/nextjs-auth0";
+import React from 'react'
+import { AppProps } from 'next/app'
+import { createGlobalStyle } from 'styled-components'
+import { UserProvider } from '@auth0/nextjs-auth0'
 
 const GlobalStyle = createGlobalStyle`
   
-`;
+`
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <GlobalStyle />
       <Component {...pageProps} />
     </UserProvider>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp
