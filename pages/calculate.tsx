@@ -1,9 +1,14 @@
 import React from 'react'
+import Calculate from '../components/calculate'
+import { withPageAuthRequired } from '@auth0/nextjs-auth0'
+import { useUser } from '@auth0/nextjs-auth0'
 
-export default function Calculate() {
+export default function CalculatePage() {
   return (
     <>
-      <a href="/api/auth/logout">Logout</a>
+      <Calculate />
     </>
   )
 }
+
+export const getServerSideProps = withPageAuthRequired()
