@@ -12,18 +12,15 @@ export default function Header() {
       <NavContainer>
         <Nav>
           <H1>meFit</H1>
-          <AuthButton link="/api/auth/login" primary>
-            Login
-          </AuthButton>
         </Nav>
       </NavContainer>
 
       <HeaderTextContainer>
         <HeaderText>
           <H2>Tired of logging your exercises on paper?</H2>
-          <P>Sign up free now to calculate and track your workout</P>
+          <P>Sign up for free now to calculate and track your workout</P>
           <div>
-            <AuthButton link="/api/auth/login" margin="0 20px 0 0">
+            <AuthButton link="/api/auth/login" margin="0 30px 0 0">
               Login
             </AuthButton>
             <AuthButton link="/api/auth/login" primary>
@@ -57,7 +54,7 @@ const Opacity = styled.div`
   height: 100vh;
   width: 100vw;
   z-index: -1;
-  background-color: rgba(0, 0, 0, 0.65);
+  background-color: rgba(0, 0, 0, 0.85);
 `
 
 const NavContainer = styled.nav`
@@ -101,14 +98,15 @@ const H2 = styled.h2`
 `
 
 const P = styled.p`
-  font-weight: 100;
+  font-weight: 400;
   font-size: 1.5rem;
+  margin: 20px 0 30px 0;
 `
 
 const Banner = styled.div`
   position: absolute;
   bottom: 0;
-  background-color: #ab1139;
+  background-color: #05485e;
   width: 100%;
   text-align: center;
   padding: 10px;
