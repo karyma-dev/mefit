@@ -20,10 +20,10 @@ export default function Header() {
           <H2>Tired of logging your exercises on paper?</H2>
           <P>Sign up for free now to calculate and track your workout</P>
           <div>
-            <AuthButton link="/api/auth/login" margin="0 30px 0 0">
+            <AuthButton link="/api/auth/login?returnTo=/calculate" margin="0 30px 0 0">
               Login
             </AuthButton>
-            <AuthButton link="/api/auth/login" primary>
+            <AuthButton link="/api/auth/login?returnTo=/calculate" primary>
               Sign Up
             </AuthButton>
           </div>
