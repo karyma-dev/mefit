@@ -19,6 +19,11 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
   }
 
+  h3 {
+    font-size: 3rem;
+    font-weight: 400;
+  }
+
   a {
     text-decoration: none;
     cursor: pointer;

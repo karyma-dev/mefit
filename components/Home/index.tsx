@@ -1,23 +1,17 @@
 import React from 'react'
 import Header from '../common/Header'
-import Main from './Main'
 import Footer from '../common/Footer'
 
-import styled from 'styled-components'
+import Main from './Main'
+import Services from './Services'
 
 export default function Home() {
   return (
     <>
       <Header />
       <Main />
-      <Div>
-        Hello world
-      </Div>
+      <Services />
       <Footer />
     </>
   )
 }
-
-const Div = styled.div`
-  height: 100vh;
-`

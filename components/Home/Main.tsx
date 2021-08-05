@@ -5,7 +5,7 @@ export default function Main() {
   return (
     <Wrapper>
       <Video autoPlay muted loop>
-        <source src='/hero.mp4' type="video/mp4"/>
+        <source src='/hero.mp4' type="video/mp4" />
       </Video>
       <Filter />
 
@@ -41,7 +41,7 @@ const Container = styled.div`
   position: absolute;
   bottom: 30%;
   left: 10%;
-  color: ${({theme}) => theme.primaryTextColor};
+  color: ${({ theme }) => theme.primaryTextColor};
 `
 
 const H1 = styled.h1`
