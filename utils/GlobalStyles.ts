@@ -13,10 +13,12 @@ const GlobalStyle = createGlobalStyle`
     font-size: 16px;
     font-weight: 300;
     font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
   }
 
   body {
     overflow-x: hidden;
+    background-color: #060606;
   }
 
   h3 {

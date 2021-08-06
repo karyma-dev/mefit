@@ -39,9 +39,8 @@ export default function Services() {
 }
 
 const Wrapper = styled.section`
-    background-color: #060606;
-    height: 100vh;
     color: ${({ theme }) => theme.primaryTextColor};
+    min-height: 100vh;
 `
 
 const Stripe = styled.div`
@@ -49,6 +48,7 @@ const Stripe = styled.div`
     width: 70%;
     background-color: #0F0F0F;
     margin: 0 auto;
+    min-height: 100vh;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -57,7 +57,7 @@ const Stripe = styled.div`
 `
 
 const H3 = styled.h3`
-    margin: 70px;
+    margin-bottom: 70px;
 `
 
 const Card = styled.div`
