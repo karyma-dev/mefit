@@ -49,7 +49,6 @@ const Stripe = styled.div`
     background-color: #0F0F0F;
     margin: 0 auto;
     min-height: 100vh;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;

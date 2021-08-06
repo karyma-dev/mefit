@@ -28,16 +28,6 @@ export default function About() {
 const Wrapper = styled.section`
     position: relative;
     min-height: 100vh;
-
-    &::before {
-        content: ' ';
-        z-index:  -1;
-        background-color: #0B0B0B;
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        clip-path: polygon(0% 0%, 100% 20%, 100% 100%, 0% 100%);
-    }
 `
 
 const Stripe = styled.div`
