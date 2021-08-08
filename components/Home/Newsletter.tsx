@@ -22,6 +22,7 @@ const Wrapper = styled.section`
     color: ${({ theme }) => theme.primaryTextColor};
     padding: 30px;
     text-align: center;
+    background-color: #0B0B0B;
 `
 
 const H3 = styled.h3`
