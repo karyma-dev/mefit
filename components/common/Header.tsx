@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import Link from "next/link"
+
+import Button from './Button'
 
 export default function Header() {
   const [active, setActive] = useState(false)
@@ -18,7 +21,7 @@ export default function Header() {
   }
 
   return (
-    <Wrapper active={active} role='navigation'>
+    <Wrapper initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 1, type: 'tween' }} active={active} role='navigation'>
       <Link href="/">
         <Brand>MeFit</Brand>
       </Link>
@@ -30,19 +33,20 @@ export default function Header() {
         <Link href="/records">
           <NavLink>Records</NavLink>
         </Link>
+        <Button text="Sign In" />
       </nav>
     </Wrapper>
   )
 }
 
-const Wrapper = styled.header`
+const Wrapper = styled(motion.header)`
   position: fixed;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: ${({ theme }) => theme.primaryTextColor};
   width: 100%;
-  padding: 20px 50px;
+  padding: 1rem 2rem;
   background: ${({ active }) => active ? `rgba( 255, 255, 255, 0.10 )` : null};
   backdrop-filter: ${({ active }) => active ? 'blur( 3.0px )' : null};
   -webkit-backdrop-filter: ${({ active }) => active ? `blur( 3.0px )` : null};
@@ -50,6 +54,11 @@ const Wrapper = styled.header`
   border-bottom: ${({ active }) => active ? `1px solid rgba( 255, 255, 255, 0.1 )` : null};
   z-index: 1000;
   mix-blend-mode: exclusion;
+
+
+  @media (max-height: 600px){
+    position: absolute;
+  }
 `
 
 const Brand = styled.a`
@@ -58,5 +67,5 @@ const Brand = styled.a`
 `
 
 const NavLink = styled.a`
-  margin-left: 20px;
+  margin-right: 30px;
 `

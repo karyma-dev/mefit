@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import Button from '../common/Button'
+
 export default function Newsletter() {
     return (
         <Wrapper>
@@ -10,6 +12,7 @@ export default function Newsletter() {
                 <Input type="text" placeholder="First Name" />
                 <Input type="text" placeholder="Last Name" />
                 <Input type="text" placeholder="Email" />
+                <Button text="Sign Up" />
             </form>
         </Wrapper>
     )
@@ -31,6 +34,6 @@ const P = styled.p`
 
 const Input = styled.input`
     padding: 10px;
-    margin: 0 10px;
+    margin-right: 10px;
     color: ${({ theme }) => theme.secondaryTextColor};
 `

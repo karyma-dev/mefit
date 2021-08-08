@@ -3,14 +3,12 @@ import { createGlobalStyle } from 'styled-components'
 const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
-    font-size: inherit;
-    color: inherit;
     margin: 0;
     padding: 0;
   }
 
   html {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 300;
     font-family: 'Roboto', sans-serif;
     overflow-x: hidden;
@@ -18,7 +16,6 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     overflow-x: hidden;
-    background-color: #060606;
   }
 
   h3 {
@@ -27,8 +24,16 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
+    color: inherit;
     text-decoration: none;
     cursor: pointer;
+    display: inline-block;
+  }
+
+  @media only screen and (max-width: 1200px){
+    html {
+      font-size: 16px;
+    }
   }
 `
 

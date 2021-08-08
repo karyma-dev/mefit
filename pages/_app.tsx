@@ -3,15 +3,15 @@ import { AppProps } from 'next/app'
 import { UserProvider } from '@auth0/nextjs-auth0'
 
 import GlobalStyle from '../utils/GlobalStyles'
-import Theme from '../utils/Theme'
+import UtilProvider from '../utils'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <UserProvider>
-      <Theme>
+      <UtilProvider>
         <GlobalStyle />
         <Component {...pageProps} />
-      </Theme>
+      </UtilProvider>
     </UserProvider>
   )
 }

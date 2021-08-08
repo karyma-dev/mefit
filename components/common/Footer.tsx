@@ -7,14 +7,14 @@ export default function Footer() {
       <Container>
         <div>
           <H4>MeFit</H4>
-          <Address>Made by Kary Ma</Address>
+          <Address>Created by <A href="https://www.karyma.ca" target="_blank">Kary Ma</A></Address>
         </div>
         <Nav>
-          <NavLink>About</NavLink>
+          {/* <NavLink>About</NavLink>
           <NavLink>Calculate</NavLink>
           <NavLink>Contact</NavLink>
           <NavLink>Records</NavLink>
-          <NavLink>Suggestions</NavLink>
+          <NavLink>Suggestions</NavLink> */}
         </Nav>
       </Container>
     </Wrapper>
@@ -39,8 +39,12 @@ const H4 = styled.h4`
 
 `
 
-const Address = styled.address`
+const A = styled.a`
+  text-decoration: underline;
+`
 
+const Address = styled.address`
+  font-style: normal;
 `
 
 const NavLink = styled.a`

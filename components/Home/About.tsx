@@ -28,6 +28,7 @@ export default function About() {
 const Wrapper = styled.section`
     position: relative;
     min-height: 100vh;
+    background-color: #0B0B0B;
 `
 
 const Stripe = styled.div`
