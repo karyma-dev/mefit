@@ -27,6 +27,7 @@ const Wrapper = styled.section`
 
 const H3 = styled.h3`
     font-size: 1.5rem;
+    color: ${({ theme }) => theme.tertiaryTextColor};
 `
 
 const P = styled.p`
