@@ -65,11 +65,27 @@ const Container = styled.div`
 const H1 = styled(motion.h1)`
   font-size: 3rem;
   margin-bottom: 0.5rem;
+
+  @media (max-width: 600px) {
+    font-size: 2rem;
+  }
+
+  @media (max-height: 700px) {
+    font-size: 2rem;
+  }
 `
 
 const H2 = styled(motion.h2)`
   font-size: 1.5rem;
   font-weight: 300;
+
+  @media (max-width: 600px) {
+    font-size: 1rem;
+  }
+
+  @media (max-height: 700px) {
+    font-size: 1rem;
+  }
 `
 
 const Link = styled.a`
