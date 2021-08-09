@@ -33,9 +33,11 @@ export default function Header() {
         <Link href="/records">
           <NavLink>Records</NavLink>
         </Link>
-        <Button text="Sign In" />
+        <a href="api/auth/login" >
+          <Button text="Login" />
+        </a>
       </nav>
-    </Wrapper>
+    </Wrapper >
   )
 }
 

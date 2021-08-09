@@ -2,13 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import { getServerSideProps } from '../../pages/calculate'
 
-export default function Button(props) {
+export default function Button({ text, style }) {
     return (
-        <Wrapper>{props.text}</Wrapper>
+        <Wrapper style={style}>
+            {text}
+        </Wrapper>
     )
 }
 
-const Wrapper = styled.a`
+const Wrapper = styled.div`
     position: relative;
     display: inline-block;
     background: linear-gradient(90deg, rgba(52,52,52,1) 0%, rgba(106,106,106,1) 100%);

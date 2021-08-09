@@ -19,8 +19,12 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h3 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 400;
+
+    @media (max-width: 700px) {
+      font-size: 2rem;
+    }
   }
 
   a {

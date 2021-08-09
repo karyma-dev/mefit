@@ -27,15 +27,23 @@ export default function About() {
 
 const Wrapper = styled.section`
     position: relative;
-    min-height: 100vh;
+    padding: 10vh 0;
     background-color: #0B0B0B;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 700px) {
+        padding: 0;
+    }
 `
 
 const Stripe = styled.div`
     position: absolute;
     background-color: #0F0F0F;
     width: 70vw;
-    height: 100vh;
+    height: 100%;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
@@ -46,23 +54,41 @@ const Container = styled.div`
     z-index: 5;
     display: flex;
     align-items: center;
-    height: 100vh;
+
+    @media (max-width: 1000px) {
+        display: block;
+        width: 60%;
+    }
+
+    @media (max-width: 700px) {
+        width: 100%;
+    }
 `
 
 const ImageContainer = styled.div`
     flex: 1;
+
+    @media (max-width: 1000px) {
+    }
 `
 
 const TextContainer = styled.div`
     flex: 1;
-    padding: 60px;
+    padding: 3rem;
     background-color:  white;
-    margin-left: -20vw;
+    margin-left: -40vw;
+
+    @media (max-width: 1000px) {
+        margin: 0;
+    }
+
+    @media (max-width: 700px) {
+    }
 `
 
 const Image = styled.img`
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
 `
 

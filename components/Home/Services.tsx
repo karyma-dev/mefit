@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Button from '../common/Button'
-
 export default function Services() {
     return (
         <Wrapper>
@@ -66,8 +64,11 @@ const Container = styled.div`
             }
 
             @media (max-width: 700px) {
-                flex-direction: column;
-                width: 100%;
+                width: 70%;
+            }
+
+            @media (max-width: 500px) {
+                width: 90%;
             }
             `
 

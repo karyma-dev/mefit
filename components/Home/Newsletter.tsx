@@ -8,12 +8,12 @@ export default function Newsletter() {
         <Wrapper>
             <H3>Newsletter Sign Up</H3>
             <P>Sign up with your email address to receive news and updates.</P>
-            <form>
+            <Form>
                 <Input type="text" placeholder="First Name" />
                 <Input type="text" placeholder="Last Name" />
                 <Input type="text" placeholder="Email" />
-                <Button text="Sign Up" />
-            </form>
+                <Button text="Sign Up" style={{ marginTop: '10px' }} />
+            </Form>
         </Wrapper>
     )
 }
@@ -34,8 +34,20 @@ const P = styled.p`
     margin: 15px;
 `
 
+const Form = styled.form`
+    @media (max-width: 700px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+`
+
 const Input = styled.input`
     padding: 10px;
     margin-right: 10px;
     color: ${({ theme }) => theme.secondaryTextColor};
+
+    @media (max-width: 700px) {
+        margin: 10px 0;
+    }
 `
