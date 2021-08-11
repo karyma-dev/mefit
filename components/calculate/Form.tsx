@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
 import Button from '../common/Button'
-import EditText from '../common/EditText'
+import EditText from './EditText'
 
 interface IProps {
 }
@@ -21,7 +21,6 @@ interface IState {
 }
 
 export default class Form extends Component<IProps, IState> {
-
     state = {
         exercise: 'Exercise',
         date: new Date(),
@@ -38,6 +37,20 @@ export default class Form extends Component<IProps, IState> {
         }, this.calculateVolume)
     }
 
+    onBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const state = this.state[e.target.name]
+
+        if (state <= 0) {
+            this.setState<any>({
+                [e.target.name]: 0
+            })
+        } else {
+            this.setState<any>({
+                [e.target.name]: state.replace(/^0+/, '')
+            })
+        }
+    }
+
     calculateVolume = () => {
         const { set, rep, weight } = this.state
 
@@ -49,11 +62,30 @@ export default class Form extends Component<IProps, IState> {
     onSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
 
-        console.log('hello')
     }
 
-    onChangeDate = (date) => {
+    onChangeDate = (date: Date) => {
         this.setState({ date })
+    }
+
+    onClear = (e) => {
+        e.preventDefault()
+
+        this.setState({
+            exercise: 'Exercise',
+            date: new Date(),
+            set: 0,
+            rep: 0,
+            weight: 0,
+            rpe: 0,
+            totalVolume: 0
+        })
+    }
+
+    resetExercise = () => {
+        this.setState({
+            exercise: 'Exercise'
+        })
     }
 
     render() {
@@ -61,7 +93,7 @@ export default class Form extends Component<IProps, IState> {
         return (
             <Wrapper>
                 <EditContainer>
-                    <EditText title="Exercise" labelStyle={labelStyle} inputStyle={inputStyle} />
+                    <EditText exercise={this.state.exercise} onChange={this.onChange} resetExercise={this.resetExercise} />
                 </EditContainer>
                 <Container>
                     <Group>
@@ -70,54 +102,34 @@ export default class Form extends Component<IProps, IState> {
                     </Group>
                     <Group>
                         <Label>Set</Label>
-                        <Input value={this.state.set} onChange={this.onChange} name="set" type='number' />
+                        <Input value={this.state.set} onChange={this.onChange} name="set" type='number' min="0" onBlur={this.onBlur} />
                     </Group>
                     <Group>
                         <Label>Rep</Label>
-                        <Input value={this.state.rep} onChange={this.onChange} name="rep" type='number' />
+                        <Input value={this.state.rep} onChange={this.onChange} name="rep" type='number' min="0" onBlur={this.onBlur} />
                     </Group>
                     <Group>
                         <Label>Weight</Label>
-                        <Input value={this.state.weight} onChange={this.onChange} name="weight" type='number' />
+                        <Input value={this.state.weight} onChange={this.onChange} name="weight" type='number' min="0" onBlur={this.onBlur} />
                     </Group>
                     <Group>
                         <Label>RPE</Label>
-                        <Input value={this.state.rpe} onChange={this.onChange} name="rpe" type='number' />
+                        <Input value={this.state.rpe} onChange={this.onChange} name="rpe" type='number' min="0" max="10" onBlur={this.onBlur} />
                     </Group>
                     <Group>
                         <Label>Total Volume</Label>
-                        <Input value={this.state.totalVolume} name="totalVolume" type='number' disabled />
+                        <Input value={this.state.totalVolume} name="totalVolume" type='number' disabled min="0" />
                     </Group>
 
                     <ButtonGroup>
                         <Button text='Submit' style={{ marginRight: '2rem' }} onClick={this.onSubmit} />
-                        Clear
+                        <Clear onClick={this.onClear}>Clear</Clear>
                     </ButtonGroup>
                 </Container>
             </Wrapper>
         )
     }
 }
-
-
-
-const inputStyle = {
-    backgroundColor: 'transparent',
-    outline: 'none',
-    color: 'white',
-    fontSize: '3rem',
-    fontWeight: '300',
-    width: '200px'
-}
-
-const labelStyle = {
-    fontSize: '3rem',
-    width: '100%',
-    textAlign: 'center',
-    cursor: 'pointer'
-}
-
-// Styled Components
 
 const EditContainer = styled.div`
     display: flex;
@@ -165,4 +177,12 @@ const ButtonGroup = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+`
+
+const Clear = styled.button`
+    background: transparent;
+    color: ${({ theme }) => theme.primaryTextColor};
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
 `

@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, memo } from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import Link from "next/link"
 
 import Button from './Button'
 
-export default function Header({ position = 'fixed' }) {
+interface IProp {
+  position?: string
+}
+
+export default function Header({ position = 'fixed' }: IProp) {
   const [active, setActive] = useState(false)
 
   if (typeof window !== "undefined") {
