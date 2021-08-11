@@ -1,4 +1,5 @@
 import React, { useState, memo } from 'react'
+import { useUser } from '@auth0/nextjs-auth0'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import Link from "next/link"
@@ -10,6 +11,7 @@ interface IProp {
 }
 
 export default function Header({ position = 'fixed' }: IProp) {
+  const { user, error, isLoading } = useUser()
   const [active, setActive] = useState(false)
 
   if (typeof window !== "undefined") {
@@ -24,8 +26,10 @@ export default function Header({ position = 'fixed' }: IProp) {
     window.addEventListener('scroll', showBackground)
   }
 
+  const route = user ? 'logout' : 'login'
+
   return (
-    <Wrapper position={position} initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 1, type: 'tween' }} active={active} role='navigation'>
+    <Wrapper position={position} active={active} role='navigation'>
       <Link href="/">
         <Brand>MeFit</Brand>
       </Link>
@@ -37,15 +41,15 @@ export default function Header({ position = 'fixed' }: IProp) {
         <Link href="/records">
           <NavLink>Records</NavLink>
         </Link>
-        <a href="api/auth/login" >
-          <Button text="Login" />
+        <a href={`api/auth/${route}`}>
+          <Button text={route} />
         </a>
       </nav>
     </Wrapper >
   )
 }
 
-const Wrapper = styled(motion.header)`
+const Wrapper = styled.header`
   position: ${({ position }) => position};
   display: flex;
   align-items: center;

@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 import styled from 'styled-components'
 
 
@@ -10,9 +11,10 @@ interface IProp {
 
 
 export default function Button({ text, style, onClick }: IProp) {
+
     return (
         <Wrapper style={style} onClick={onClick}>
-            {text}
+            {_.startCase(text)}
         </Wrapper>
     )
 }
