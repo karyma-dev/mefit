@@ -1,29 +1,63 @@
-import withRouter from 'next/dist/client/with-router'
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import DatePicker from "react-datepicker"
+
+import "react-datepicker/dist/react-datepicker.css"
 
 import Button from '../common/Button'
 import EditText from '../common/EditText'
 
-export default class Form extends Component {
+interface IProps {
+}
+
+interface IState {
+    exercise: string,
+    date: object,
+    set: number,
+    rep: number,
+    weight: number,
+    rpe: number,
+    totalVolume: number,
+}
+
+export default class Form extends Component<IProps, IState> {
 
     state = {
         exercise: 'Exercise',
-        date: '',
-        set: '',
-        rep: '',
-        weight: '',
-        rpe: '',
-        totalVolume: ''
+        date: new Date(),
+        set: 0,
+        rep: 0,
+        weight: 0,
+        rpe: 0,
+        totalVolume: 0
     }
 
-    onChange = (e) => {
-        this.setState({
+    onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState<any>({
             [e.target.name]: e.target.value
+        }, this.calculateVolume)
+    }
+
+    calculateVolume = () => {
+        const { set, rep, weight } = this.state
+
+        this.setState({
+            totalVolume: set * rep * weight
         })
     }
 
+    onSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault()
+
+        console.log('hello')
+    }
+
+    onChangeDate = (date) => {
+        this.setState({ date })
+    }
+
     render() {
+
         return (
             <Wrapper>
                 <EditContainer>
@@ -32,7 +66,7 @@ export default class Form extends Component {
                 <Container>
                     <Group>
                         <Label>Date</Label>
-                        <Input value={this.state.date} onChange={this.onChange} name="date" />
+                        <DateInput selected={this.state.date} onChange={this.onChangeDate} />
                     </Group>
                     <Group>
                         <Label>Set</Label>
@@ -56,7 +90,7 @@ export default class Form extends Component {
                     </Group>
 
                     <ButtonGroup>
-                        <Button text='Submit' style={{ marginRight: '2rem' }} />
+                        <Button text='Submit' style={{ marginRight: '2rem' }} onClick={this.onSubmit} />
                         Clear
                     </ButtonGroup>
                 </Container>
@@ -115,6 +149,16 @@ const Input = styled.input`
     color: ${({ theme }) => theme.primaryTextColor};
     outline: none;
     padding: 5px;
+`
+
+const DateInput = styled(DatePicker)`
+    background-color: transparent;
+    border: 1px solid #5A5A5A;
+    color: ${({ theme }) => theme.primaryTextColor};
+    outline: none;
+    padding: 5px;
+    width: 100%;
+    text-align: center;
 `
 
 const ButtonGroup = styled.div`

@@ -20,10 +20,11 @@ const Wrapper = styled.main`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 `
 
 const Calculator = styled.div`
     background-color: #151515;
     display: flex;
+    border-radius: 20px;
 `

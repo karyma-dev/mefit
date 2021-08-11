@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     overflow-x: hidden;
+    background-color: #060606;
   }
 
   h3 {

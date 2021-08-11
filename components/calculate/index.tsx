@@ -5,7 +5,7 @@ import Main from './Main'
 export default function Calculate() {
   return (
     <>
-      <Header />
+      <Header position="static" />
       <Main />
     </>
   )

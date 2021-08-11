@@ -5,7 +5,7 @@ import Link from "next/link"
 
 import Button from './Button'
 
-export default function Header() {
+export default function Header({ position = 'fixed' }) {
   const [active, setActive] = useState(false)
 
   if (typeof window !== "undefined") {
@@ -21,7 +21,7 @@ export default function Header() {
   }
 
   return (
-    <Wrapper initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 1, type: 'tween' }} active={active} role='navigation'>
+    <Wrapper position={position} initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 1, type: 'tween' }} active={active} role='navigation'>
       <Link href="/">
         <Brand>MeFit</Brand>
       </Link>
@@ -42,7 +42,7 @@ export default function Header() {
 }
 
 const Wrapper = styled(motion.header)`
-  position: fixed;
+  position: ${({ position }) => position};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -56,7 +56,6 @@ const Wrapper = styled(motion.header)`
   border-bottom: ${({ active }) => active ? `1px solid rgba( 255, 255, 255, 0.1 )` : null};
   z-index: 1000;
   mix-blend-mode: exclusion;
-
 
   @media (max-height: 600px){
     position: absolute;

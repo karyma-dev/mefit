@@ -1,17 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default function Button({ text, style }: Prop) {
+
+interface IProp {
+    text: string,
+    style?: object,
+    onClick?: (e) => void
+}
+
+
+export default function Button({ text, style, onClick }: IProp) {
     return (
-        <Wrapper style={style}>
+        <Wrapper style={style} onClick={onClick}>
             {text}
         </Wrapper>
     )
-}
-
-interface Prop {
-    text: string,
-    style?: object
 }
 
 const Wrapper = styled.div`
