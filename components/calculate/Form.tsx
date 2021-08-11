@@ -63,6 +63,7 @@ export default class Form extends Component<IProps, IState> {
     onSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
 
+        axios.post('api/records')
     }
 
     onChangeDate = (date: Date) => {
