@@ -1,13 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
-import { getServerSideProps } from '../../pages/calculate'
 
-export default function Button({ text, style }) {
+export default function Button({ text, style }: Prop) {
     return (
         <Wrapper style={style}>
             {text}
         </Wrapper>
     )
+}
+
+interface Prop {
+    text: string,
+    style?: object
 }
 
 const Wrapper = styled.div`
@@ -19,6 +23,7 @@ const Wrapper = styled.div`
     font-weight: 400;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     z-index: 1;
+    cursor: pointer;
 
     &::before {
         position: absolute;
