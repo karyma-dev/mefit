@@ -1,6 +1,5 @@
 import React, { useState, memo } from 'react'
 import { useUser } from '@auth0/nextjs-auth0'
-import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import Link from "next/link"
 

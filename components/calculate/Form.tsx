@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
 import Button from '../common/Button'
+import ErrorMessage from '../common/ErrorMessage'
 import EditText from './EditText'
 
 interface IProps {
@@ -19,6 +20,7 @@ interface IState {
     weight: number,
     rpe: number,
     totalVolume: number,
+    errorMessage: string
 }
 
 export default class Form extends Component<IProps, IState> {
@@ -29,7 +31,8 @@ export default class Form extends Component<IProps, IState> {
         rep: 0,
         weight: 0,
         rpe: 0,
-        totalVolume: 0
+        totalVolume: 0,
+        errorMessage: ''
     }
 
     onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +44,12 @@ export default class Form extends Component<IProps, IState> {
     onBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
         const state = this.state[e.target.name]
 
-        if (state <= 0) {
+
+        if (e.target.name === 'rpe' && state > 10) {
+            this.setState<any>({
+                [e.target.name]: 0
+            })
+        } else if (state <= 0) {
             this.setState<any>({
                 [e.target.name]: 0
             })
@@ -58,12 +66,6 @@ export default class Form extends Component<IProps, IState> {
         this.setState({
             totalVolume: set * rep * weight
         })
-    }
-
-    onSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault()
-
-        axios.post('api/records')
     }
 
     onChangeDate = (date: Date) => {
@@ -90,10 +92,29 @@ export default class Form extends Component<IProps, IState> {
         })
     }
 
+    resetMessage = () => {
+        this.setState({
+            errorMessage: ''
+        })
+    }
+
+
+    onSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault()
+
+        this.setState({
+            errorMessage: 'Error'
+        })
+
+        // axios.post('api/records', this.state)
+    }
+
     render() {
+
 
         return (
             <Wrapper>
+                <ErrorMessage message={this.state.errorMessage} resetMessage={this.resetMessage} />
                 <EditContainer>
                     <EditText exercise={this.state.exercise} onChange={this.onChange} resetExercise={this.resetExercise} />
                 </EditContainer>
