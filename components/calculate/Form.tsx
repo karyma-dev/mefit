@@ -104,12 +104,7 @@ export default class Form extends Component<IProps, IState> {
 
         const { exercise, set, rep, weight, rpe } = this.state
 
-        if (exercise.toLowerCase() === 'exercise') {
-            this.setErrorMessage('Please enter a name for exercise')
-            return
-        }
-
-        if (set === 0 || rep === 0 || weight === 0 || rpe === 0) {
+        if (set === 0 || rep === 0 || weight === 0 || rpe === 0 || exercise.length <= 0) {
             this.setErrorMessage('Please do not leave any fields blank')
             return
         }
