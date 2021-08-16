@@ -7,7 +7,6 @@ import "react-datepicker/dist/react-datepicker.css"
 
 import Button from '../common/Button'
 import ErrorMessage from '../common/ErrorMessage'
-import EditText from './EditText'
 
 interface IProps {
 }
@@ -25,7 +24,7 @@ interface IState {
 
 export default class Form extends Component<IProps, IState> {
     state = {
-        exercise: 'Exercise',
+        exercise: '',
         date: new Date(),
         set: 0,
         rep: 0,
@@ -98,27 +97,35 @@ export default class Form extends Component<IProps, IState> {
         })
     }
 
+    setErrorMessage = message => this.setState({ errorMessage: message })
 
     onSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
 
-        this.setState({
-            errorMessage: 'Error'
-        })
+        const { exercise, set, rep, weight, rpe } = this.state
 
-        // axios.post('api/records', this.state)
+        if (exercise.toLowerCase() === 'exercise') {
+            this.setErrorMessage('Please enter a name for exercise')
+            return
+        }
+
+        if (set === 0 || rep === 0 || weight === 0 || rpe === 0) {
+            this.setErrorMessage('Please do not leave any fields blank')
+            return
+        }
+
+        axios.post('api/records', this.state)
     }
 
     render() {
-
-
         return (
             <Wrapper>
                 <ErrorMessage message={this.state.errorMessage} resetMessage={this.resetMessage} />
-                <EditContainer>
-                    <EditText exercise={this.state.exercise} onChange={this.onChange} resetExercise={this.resetExercise} />
-                </EditContainer>
                 <Container>
+                    <Group>
+                        <Label>Exercise</Label>
+                        <Input value={this.state.exercise} onChange={this.onChange} name="exercise" type='text' />
+                    </Group>
                     <Group>
                         <Label>Date</Label>
                         <DateInput selected={this.state.date} onChange={this.onChangeDate} />
@@ -153,11 +160,6 @@ export default class Form extends Component<IProps, IState> {
         )
     }
 }
-
-const EditContainer = styled.div`
-    display: flex;
-    justify-content: center;
-`
 
 const Wrapper = styled.form`
     flex: 1;
