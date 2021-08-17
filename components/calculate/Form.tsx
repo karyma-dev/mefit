@@ -6,7 +6,7 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
 import Button from '../common/Button'
-import ErrorMessage from '../common/ErrorMessage'
+import Message from '../common/Message'
 
 interface IProps {
 }
@@ -19,7 +19,8 @@ interface IState {
     weight: number,
     rpe: number,
     totalVolume: number,
-    errorMessage: string
+    errorMessage: string,
+    successMessage: string
 }
 
 export default class Form extends Component<IProps, IState> {
@@ -31,7 +32,8 @@ export default class Form extends Component<IProps, IState> {
         weight: 0,
         rpe: 0,
         totalVolume: 0,
-        errorMessage: ''
+        errorMessage: '',
+        successMessage: ''
     }
 
     onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -93,7 +95,8 @@ export default class Form extends Component<IProps, IState> {
 
     resetMessage = () => {
         this.setState({
-            errorMessage: ''
+            errorMessage: '',
+            successMessage: ''
         })
     }
 
@@ -102,20 +105,21 @@ export default class Form extends Component<IProps, IState> {
     onSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
 
-        const { exercise, set, rep, weight, rpe } = this.state
+        // const { exercise, set, rep, weight, rpe } = this.state
 
-        if (set === 0 || rep === 0 || weight === 0 || rpe === 0 || exercise.length <= 0) {
-            this.setErrorMessage('Please do not leave any fields blank')
-            return
-        }
+        // if (set === 0 || rep === 0 || weight === 0 || rpe === 0 || exercise.length <= 0) {
+        //     this.setErrorMessage('Please do not leave any fields blank')
+        //     return
+        // }
 
-        axios.post('api/records', this.state)
+        axios.post('api/records', this.state).then(({ data }) => this.setState({ successMessage: data }))
     }
 
     render() {
         return (
             <Wrapper>
-                <ErrorMessage message={this.state.errorMessage} resetMessage={this.resetMessage} />
+                <Message type="success" message={this.state.successMessage} resetMessage={this.resetMessage} />
+                <Message type="error" message={this.state.errorMessage} resetMessage={this.resetMessage} />
                 <Container>
                     <Group>
                         <Label>Exercise</Label>

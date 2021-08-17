@@ -1,7 +1,8 @@
 import mongoose, { Schema } from 'mongoose'
+import uniqueValidator from 'mongoose-unique-validator'
 
 const UserSchema = new Schema({
-  email: String,
+  email: { type: String, required: true, unique: true },
   email_verified: Boolean,
   records: [
     {
@@ -19,6 +20,6 @@ const UserSchema = new Schema({
   ],
 })
 
-const User = mongoose.model('User', UserSchema)
+UserSchema.plugin(uniqueValidator)
 
-export default User
+export default mongoose.models.User || mongoose.model('User', UserSchema)

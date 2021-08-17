@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
-export default function ErrorMessage({ message, resetMessage }) {
+export default function ErrorMessage({ type, message, resetMessage }) {
     const [visible, setVisible] = useState(false)
 
     useEffect(() => {
@@ -20,7 +20,7 @@ export default function ErrorMessage({ message, resetMessage }) {
 
     if (visible) {
         return (
-            <Container animate={{ y: -100, opacity: 0.5 }} transition={{ delay: 3, duration: 2 }}>
+            <Container animate={{ y: -100, opacity: 0.5 }} transition={{ delay: 3, duration: 2 }} type={type}>
                 <Message>
                     {message}
                 </Message>
@@ -36,7 +36,7 @@ const Container = styled(motion.div)`
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #E53935;
+    background-color: ${(props) => props.type === 'error' ? '#E53935' : 'green'};
     text-align: center;
     padding: 1rem;
 `
