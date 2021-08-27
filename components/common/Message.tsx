@@ -39,6 +39,7 @@ const Container = styled(motion.div)`
     background-color: ${(props) => props.type === 'error' ? '#E53935' : 'green'};
     text-align: center;
     padding: 1rem;
+    z-index: 1000;
 `
 
 const Message = styled.h3`

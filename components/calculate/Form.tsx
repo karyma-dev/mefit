@@ -112,7 +112,9 @@ export default class Form extends Component<IProps, IState> {
         //     return
         // }
 
-        axios.post('api/records', this.state).then(({ data }) => this.setState({ successMessage: data }))
+        axios.post('api/records', this.state)
+            .then(({ data }) => this.setState({ successMessage: data.successMessage }))
+            .catch(({ response }) => this.setState({ errorMessage: response.data.errorMessage }))
     }
 
     render() {

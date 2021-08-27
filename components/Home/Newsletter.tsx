@@ -1,18 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 import styled from 'styled-components'
 
 import Button from '../common/Button'
+import Message from '../common/Message'
 
 export default function Newsletter() {
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [email, setEmail] = useState('')
+    const [errorMsg, setErrorMsg] = useState('')
+
+    function onSubmit(e) {
+        e.preventDefault()
+
+        const data = { firstName, lastName, email }
+
+        axios.post('/api/subscribe', data)
+            .then((res) => console.log('response'))
+            .catch(({ response }) => setErrorMsg(response.data.errorMsg))
+    }
+
     return (
         <Wrapper>
+            <Message type="error" message={errorMsg} resetMessage={() => setErrorMsg('')} />
             <H3>Newsletter Sign Up</H3>
             <P>Sign up with your email address to receive news and updates.</P>
             <Form>
-                <Input type="text" placeholder="First Name" />
-                <Input type="text" placeholder="Last Name" />
-                <Input type="text" placeholder="Email" />
-                <Button text="Sign Up" style={{ marginTop: '10px' }} />
+                <Input type="text" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                <Input type="text" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                <Input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <Button text="Sign Up" style={{ marginTop: '10px' }} onClick={(e) => onSubmit(e)} />
             </Form>
         </Wrapper>
     )

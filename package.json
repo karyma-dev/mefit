@@ -25,6 +25,7 @@
     "@types/mongoose": "^5.11.97",
     "@types/next": "^9.0.0",
     "@types/react": "^17.0.13",
+    "@types/styled-components": "^5.1.12",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "babel-plugin-styled-components": "^1.13.2",
     "eslint-config-prettier": "^8.3.0",
