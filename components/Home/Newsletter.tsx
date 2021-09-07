@@ -9,21 +9,21 @@ export default function Newsletter() {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
-    const [errorMsg, setErrorMsg] = useState('')
+    const [message, setMessage] = useState({ text: '', type: '' })
 
-    function onSubmit(e) {
+    function onSubmit(e: React.ChangeEvent<HTMLInputElement>) {
         e.preventDefault()
 
         const data = { firstName, lastName, email }
 
         axios.post('/api/subscribe', data)
-            .then((res) => console.log('response'))
-            .catch(({ response }) => setErrorMsg(response.data.errorMsg))
+            .then(({ data }) => setMessage({ text: data.message, type: data.type }))
+            .catch(({ response }) => setMessage({ text: response.data.message, type: response.data.type }))
     }
 
     return (
         <Wrapper>
-            <Message type="error" message={errorMsg} resetMessage={() => setErrorMsg('')} />
+            <Message type={message.type} message={message.text} resetMessage={() => setMessage({ text: '', type: '' })} />
             <H3>Newsletter Sign Up</H3>
             <P>Sign up with your email address to receive news and updates.</P>
             <Form>
@@ -40,7 +40,7 @@ const Wrapper = styled.section`
     color: ${({ theme }) => theme.primaryTextColor};
     padding: 30px;
     text-align: center;
-    background-color: #0B0B0B;
+    background-color: #181818;
 `
 
 const H3 = styled.h3`

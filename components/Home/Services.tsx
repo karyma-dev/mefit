@@ -53,6 +53,7 @@ const Wrapper = styled.section`
 
 const H3 = styled.h3`
             margin-bottom: 5rem;
+            border-bottom: 5px solid red;
             `
 const Container = styled.div`
             display: flex;

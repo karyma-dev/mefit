@@ -1,25 +1,30 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
+import _ from 'lodash'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const { email, firstName, lastName } = req.body
-
-  // Server Side Validation
+  const firstName = _.capitalize(req.body.firstName)
+  const lastName = _.capitalize(req.body.lastName)
+  const email = req.body.email
 
   if (!firstName || !lastName || !email)
     return res
       .status(400)
-      .json({ errorMsg: 'Please do not leave any fields blank' })
+      .json({ message: 'Please do not leave any fields blank', type: 'error' })
 
   try {
     const { url, data, headers } = getRequestParams(email, firstName, lastName)
 
-    const response = await axios.post(url, data, { headers })
+    await axios.post(url, data, { headers })
 
-    return res.status(201).json(response)
+    return res
+      .status(201)
+      .json({ message: 'Signed up successfully', type: 'success' })
   } catch (error) {
+    console.log(error)
     return res.status(400).json({
-      errorMsg: `Email already subscribed`,
+      message: `Invalid Email or Email is already taken`,
+      type: 'error',
     })
   }
 }
@@ -29,6 +34,7 @@ function getRequestParams(
   first_name: string,
   last_name: string
 ) {
+  console.log(email_address)
   const API_KEY = process.env.MAILCHIMP_API_KEY
   const AUDIENCE_ID = process.env.MAILCHIMP_AUDIENCE_ID
   const DATACENTER = process.env.MAILCHIMP_DATA_CENTER
