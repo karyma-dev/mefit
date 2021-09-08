@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@auth0/nextjs-auth0": "^1.4.2",
+    "@types/lodash": "^4.14.172",
     "@types/mongoose": "^5.11.97",
     "@types/next": "^9.0.0",
     "@types/react": "^17.0.13",
