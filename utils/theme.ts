@@ -1,7 +1,7 @@
 const theme = {
   primaryTextColor: 'white',
   secondaryTextColor: 'black',
-  tertiaryTextColor: 'red'
+  tertiaryTextColor: 'red',
 }
 
 export default theme
