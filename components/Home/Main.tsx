@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion'
 
 const variants = {
   visible: { opacity: 1 },
@@ -11,24 +11,27 @@ export default function Main() {
   return (
     <Wrapper>
       <Video autoPlay muted loop>
-        <source src='/hero.mp4' type="video/mp4" />
+        <source src="/hero.mp4" type="video/mp4" />
       </Video>
       <Filter />
 
       <Container>
-        <H1 initial="hidden"
+        <H1
+          initial="hidden"
           animate="visible"
           transition={{ delay: 0.5, duration: 0.5 }}
           variants={variants}
         >
           Take your training to the next level.
         </H1>
-        <H2 initial="hidden"
+        <H2
+          initial="hidden"
           animate="visible"
           transition={{ delay: 0.5, duration: 1 }}
           variants={variants}
         >
-          <Link href="/api/auth/login">Sign up</Link> to keep track of your progression
+          <Link href="/api/auth/login">Sign up</Link> to keep track of your
+          progression
         </H2>
       </Container>
     </Wrapper>

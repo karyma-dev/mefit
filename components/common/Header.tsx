@@ -1,7 +1,7 @@
 import React, { useState, memo } from 'react'
 import { useUser } from '@auth0/nextjs-auth0'
 import styled from 'styled-components'
-import Link from "next/link"
+import Link from 'next/link'
 
 import Button from './Button'
 
@@ -13,7 +13,7 @@ export default function Header({ position = 'fixed' }: IProp) {
   const { user, error, isLoading } = useUser()
   const [active, setActive] = useState(false)
 
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     const showBackground = () => {
       if (window.scrollY >= 60) {
         setActive(true)
@@ -28,7 +28,7 @@ export default function Header({ position = 'fixed' }: IProp) {
   const route = user ? 'logout' : 'login'
 
   return (
-    <Wrapper position={position} active={active} role='navigation'>
+    <Wrapper position={position} active={active} role="navigation">
       <Link href="/">
         <Brand>MeFit</Brand>
       </Link>
@@ -44,7 +44,7 @@ export default function Header({ position = 'fixed' }: IProp) {
           <Button text={route} />
         </a>
       </nav>
-    </Wrapper >
+    </Wrapper>
   )
 }
 
@@ -56,15 +56,18 @@ const Wrapper = styled.header`
   color: ${({ theme }) => theme.primaryTextColor};
   width: 100%;
   padding: 1rem 2rem;
-  background: ${({ active }) => active ? `rgba( 255, 255, 255, 0.10 )` : null};
-  backdrop-filter: ${({ active }) => active ? 'blur( 3.0px )' : null};
-  -webkit-backdrop-filter: ${({ active }) => active ? `blur( 3.0px )` : null};
-  box-shadow: ${({ active }) => active ? `0 -15px 30px 0 rgba( 0, 0, 0, 1 )` : null};
-  border-bottom: ${({ active }) => active ? `1px solid rgba( 255, 255, 255, 0.1 )` : null};
+  background: ${({ active }) =>
+    active ? `rgba( 255, 255, 255, 0.10 )` : null};
+  backdrop-filter: ${({ active }) => (active ? 'blur( 5.0px )' : null)};
+  -webkit-backdrop-filter: ${({ active }) => (active ? `blur( 5.0px )` : null)};
+  box-shadow: ${({ active }) =>
+    active ? `0 -15px 30px 0 rgba( 0, 0, 0, 1 )` : null};
+  border-bottom: ${({ active }) =>
+    active ? `1px solid rgba( 255, 255, 255, 0.1 )` : null};
   z-index: 1000;
-  mix-blend-mode: exclusion;
+  /* mix-blend-mode: exclusion; */
 
-  @media (max-height: 600px){
+  @media (max-height: 600px) {
     position: absolute;
   }
 `

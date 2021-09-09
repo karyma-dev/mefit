@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
 import _ from 'lodash'
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const firstName = _.capitalize(req.body.firstName)
   const lastName = _.capitalize(req.body.lastName)
   const email = req.body.email
@@ -63,3 +63,5 @@ function getRequestParams(
     headers,
   }
 }
+
+export default handler

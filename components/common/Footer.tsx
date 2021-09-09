@@ -7,7 +7,12 @@ export default function Footer() {
       <Container>
         <div>
           <H4>MeFit</H4>
-          <Address>Created by <A href="https://www.karyma.ca" target="_blank">Kary Ma</A></Address>
+          <Address>
+            Created by{' '}
+            <A href="https://www.karyma.ca" target="_blank">
+              Kary Ma
+            </A>
+          </Address>
         </div>
         <Nav>
           {/* <NavLink>About</NavLink>
@@ -32,12 +37,9 @@ const Container = styled.div`
   justify-content: space-between;
 `
 
-const Nav = styled.nav`
-`
+const Nav = styled.nav``
 
-const H4 = styled.h4`
-
-`
+const H4 = styled.h4``
 
 const A = styled.a`
   text-decoration: underline;

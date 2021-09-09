@@ -11,7 +11,11 @@ import Newsletter from './Newsletter'
 export default function Home() {
   return (
     <>
-      <motion.div initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 1, type: 'tween' }}>
+      <motion.div
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 1, type: 'tween' }}
+      >
         <Header />
       </motion.div>
       <Main />
