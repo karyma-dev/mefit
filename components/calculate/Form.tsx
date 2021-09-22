@@ -106,12 +106,18 @@ export default class Form extends Component<IProps, IState> {
   onSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
 
-    // const { exercise, set, rep, weight, rpe } = this.state
+    const { exercise, set, rep, weight, rpe } = this.state
 
-    // if (set === 0 || rep === 0 || weight === 0 || rpe === 0 || exercise.length <= 0) {
-    //     this.setErrorMessage('Please do not leave any fields blank')
-    //     return
-    // }
+    if (
+      set === 0 ||
+      rep === 0 ||
+      weight === 0 ||
+      rpe === 0 ||
+      exercise.length <= 0
+    ) {
+      this.setErrorMessage('Please do not leave any fields blank')
+      return
+    }
 
     axios
       .post('api/records', this.state)

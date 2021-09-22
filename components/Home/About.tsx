@@ -14,21 +14,37 @@ export default function About() {
   }, [controls, inView])
 
   return (
-    <Wrapper>
+    <Wrapper ref={ref}>
       <Container>
-        <ImageContainer>
+        <ImageContainer
+          animate={controls}
+          initial="hidden"
+          transition={{ duration: 1 }}
+          variants={{
+            visible: { x: 0, opacity: 1 },
+            hidden: { x: -1000, opacity: 0 },
+          }}
+        >
           <Image src="./about.png" alt="about us" />
         </ImageContainer>
-        <TextContainer>
+        <TextContainer
+          animate={controls}
+          initial="hidden"
+          transition={{ duration: 1 }}
+          variants={{
+            visible: { x: 0, opacity: 1 },
+            hidden: { x: 1000, opacity: 0 },
+          }}
+        >
           <H3>About</H3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-            mollitia, molestiae quas vel sint commodi repudiandae consequuntur
-            voluptatum laborum numquam blanditiis harum quisquam eius sed odit
-            fugiat iusto fuga praesentium optio, eaque rerum! Maxime mollitia,
-            molestiae quas vel sint commodi repudiandae consequuntur voluptatum
-            laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto
-            fuga praesentium optio, eaque rerum!
+            MeFit was created by Kary Ma as a capstone project at Brainstation
+            coding bootcamp to provide for people like himself, an organized way
+            to keep track of their workouts. It has been constantly updated
+            throughout the years. Fitness has been one of his greatest passion
+            ever since he was diagnosed with thyroid cancer. After given a
+            second chance he vowed to always challenge himself to greater
+            heights whether that is physically or mentally.
           </p>
         </TextContainer>
       </Container>
@@ -37,7 +53,7 @@ export default function About() {
   )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled(motion.section)`
   position: relative;
   padding: 10vh 0;
   background-color: #0b0b0b;
@@ -77,17 +93,17 @@ const Container = styled.div`
   }
 `
 
-const ImageContainer = styled.div`
+const ImageContainer = styled(motion.div)`
   flex: 1;
 
   @media (max-width: 1000px) {
   }
 `
 
-const TextContainer = styled.div`
+const TextContainer = styled(motion.div)`
   flex: 1;
   padding: 3rem;
-  background-color: white;
+  background-color: #f5f5f5;
   margin-left: -40vw;
 
   @media (max-width: 1000px) {

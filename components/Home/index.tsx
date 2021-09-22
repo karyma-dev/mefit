@@ -10,7 +10,7 @@ import Newsletter from './Newsletter'
 
 export default function Home() {
   return (
-    <>
+    <motion.div>
       <motion.div
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -23,6 +23,6 @@ export default function Home() {
       <About />
       <Newsletter />
       <Footer />
-    </>
+    </motion.div>
   )
 }

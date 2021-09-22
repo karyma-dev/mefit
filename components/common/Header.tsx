@@ -29,15 +29,15 @@ export default function Header({ position = 'fixed' }: IProp) {
 
   return (
     <Wrapper position={position} active={active} role="navigation">
-      <Link href="/">
+      <Link href="/" passHref={true}>
         <Brand>MeFit</Brand>
       </Link>
 
       <nav>
-        <Link href="/calculate">
+        <Link href="/calculate" passHref={true}>
           <NavLink>Calculate</NavLink>
         </Link>
-        <Link href="/records">
+        <Link href="/records" passHref={true}>
           <NavLink>Records</NavLink>
         </Link>
         <a href={`api/auth/${route}`}>
@@ -65,7 +65,7 @@ const Wrapper = styled.header`
   border-bottom: ${({ active }) =>
     active ? `1px solid rgba( 255, 255, 255, 0.1 )` : null};
   z-index: 1000;
-  /* mix-blend-mode: exclusion; */
+  mix-blend-mode: exclusion;
 
   @media (max-height: 600px) {
     position: absolute;

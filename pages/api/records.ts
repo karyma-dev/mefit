@@ -1,5 +1,6 @@
 import dbConnect from '../../utils/mongodb'
 import User from '../../models/User'
+import _ from 'lodash'
 import { getSession } from '@auth0/nextjs-auth0'
 import { NextApiRequest, NextApiResponse } from 'next'
 
@@ -8,12 +9,29 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await dbConnect()
 
   const userInfo = user
-  const record = req.body
+  const { exercise, date, set, rep, weight, rpe, totalVolume } = req.body
+
+  const record = {
+    exercise: _.capitalize(exercise),
+    date,
+    set,
+    rep,
+    weight,
+    rpe,
+    totalVolume,
+  }
 
   switch (req.method) {
     case 'GET':
-      console.log('GET')
-      User.findOne({ email: user.email }, (err, user) => res.json(user.records))
+      User.findOne({ email: user.email }, (err, user) => {
+        if (user === null) {
+          res
+            .status(400)
+            .json({ errorMessage: 'Please add atleast one record' })
+        } else {
+          res.status(200).json(user.records)
+        }
+      })
       break
     case 'POST':
       if (user.email_verified === false)

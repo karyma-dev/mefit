@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
+import _ from 'lodash'
 
-import StackedBarGraph from './StackedBarGraph'
+import Graph from './Graph'
 
 export default function Main() {
+  const [errorMessage, setErrorMessage] = useState('')
   const [records, setRecords] = useState([])
   const [exercise, setExercise] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
-      const result: any = await axios.get('api/records')
-      const { data } = result
+      try {
+        const result = await axios.get('api/records')
+        const { data } = result
 
-      setRecords(data)
-      setExercise(data[0].exercise)
+        setRecords(data)
+        setExercise(data[0].exercise)
+      } catch (err) {
+        setErrorMessage(err.response.data.errorMessage)
+      }
     }
 
     fetchData()
@@ -23,15 +29,20 @@ export default function Main() {
   const uniqueExerciseNames = [
     ...new Set(records.map((item: { exercise: string }) => item.exercise)),
   ]
+
   const filteredRecords = records.filter(
-    (record: any) => record.exercise === exercise
+    (record) => record.exercise === exercise
   )
 
-  return (
-    <Wrapper>
-      Dropdown | <StackedBarGraph records={filteredRecords} />
-    </Wrapper>
+  const content = errorMessage ? (
+    <h1>{errorMessage}</h1>
+  ) : (
+    <div>
+      <Graph width={500} height={500} data={filteredRecords} />
+    </div>
   )
+
+  return <Wrapper>{content}</Wrapper>
 }
 
 const Wrapper = styled.div``

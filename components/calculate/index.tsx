@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import Header from '../common/Header'
 import Main from './Main'
 

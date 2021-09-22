@@ -16,10 +16,9 @@ export default function Services() {
   return (
     <Wrapper>
       <H3>Our Services</H3>
-      <Container>
+      <Container ref={ref}>
         <Card
           color="white"
-          ref={ref}
           animate={controls}
           initial="hidden"
           transition={{ duration: 0.5 }}
@@ -33,17 +32,13 @@ export default function Services() {
             <h4>Up to date research</h4>
             <CardUnderline />
             <p>
-              MeFit offers software solution for your workout needs with the
-              latest research. Tracks RPE(Rate of Perceived Exertion) and total
-              volume. MeFit offers software solution for your workout needs with
-              the latest research. Tracks RPE(Rate of Perceived Exertion) and
-              total volume.
+              At MeFit we strive to keep up with the latest research and adapt
+              to the most cutting edge technologies out there.
             </p>
           </CardTextContainer>
         </Card>
         <Card
           color="white"
-          ref={ref}
           animate={controls}
           initial="hidden"
           transition={{ duration: 0.75 }}
@@ -57,17 +52,14 @@ export default function Services() {
             <h4>Track your progress</h4>
             <CardUnderline />
             <p>
-              MeFit offers an easy way for you to track and calculate your
-              progress. Gives you a way to see your progression with clean and
-              visually appealing graphs. MeFit offers an easy way for you to
-              track and calculate your progress. Gives you a way to see your
-              progression with clean and visually appealing graphs.
+              MeFit offers a solution for fitness enthusiasts track of their
+              workouts through their RPE (Rate of Perceived Exertion) and total
+              volume.
             </p>
           </CardTextContainer>
         </Card>
         <Card
           color="white"
-          ref={ref}
           animate={controls}
           initial="hidden"
           transition={{ duration: 1 }}
@@ -81,9 +73,9 @@ export default function Services() {
             <h4>Access Anywhere</h4>
             <CardUnderline />
             <p>
-              Calculate and see your progress anywhere. Coming to apple and
-              android soon. Calculate and see your progress anywhere. Coming to
-              apple and android soon.
+              You have access to the application anywhere and anytime whether
+              that is on your phone at the gym or at home on your computer.
+              Native application coming soon to Android and IOS!
             </p>
           </CardTextContainer>
         </Card>
@@ -106,7 +98,7 @@ const H3 = styled(motion.h3)`
   margin-bottom: 5rem;
   border-bottom: 5px solid red;
 `
-const Container = styled.div`
+const Container = styled(motion.div)`
   display: flex;
   width: 100%;
 
@@ -127,9 +119,8 @@ const Container = styled.div`
 const Card = styled(motion.div)`
   display: inline-flex;
   flex-direction: column;
-  background-color: white;
+  background-color: #f5f5f5;
   color: black;
-  text-align: justify;
   padding-bottom: 1rem;
   overflow: hidden;
   flex: 1;

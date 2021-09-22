@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 import axios from 'axios'
 import styled from 'styled-components'
 
@@ -10,6 +12,15 @@ export default function Newsletter() {
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState({ text: '', type: '' })
+
+  const controls = useAnimation()
+  const [ref, inView] = useInView()
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible')
+    }
+  }, [controls, inView])
 
   function onSubmit(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault()
@@ -25,7 +36,16 @@ export default function Newsletter() {
   }
 
   return (
-    <Wrapper>
+    <Wrapper
+      ref={ref}
+      animate={controls}
+      initial="hidden"
+      transition={{ duration: 0.5 }}
+      variants={{
+        visible: { opacity: 1 },
+        hidden: { opacity: 0 },
+      }}
+    >
       <Message
         type={message.type}
         message={message.text}
@@ -62,7 +82,7 @@ export default function Newsletter() {
   )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled(motion.section)`
   color: ${({ theme }) => theme.primaryTextColor};
   padding: 30px;
   text-align: center;
