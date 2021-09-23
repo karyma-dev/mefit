@@ -1,62 +1,64 @@
-import React from 'react'
-import { Bar } from 'react-chartjs-2'
+import React, { useState } from 'react'
+import { Line } from 'react-chartjs-2'
+import useToggle from '../../hooks/useToggle'
+
+import Modal from './Modal'
 
 const Graph = ({ data }) => {
-  const datasets = data
-  const labels = data.map(({ date }) => {
-    const d = new Date(date)
-    const mm = d.getMonth(),
-      dd = d.getDay(),
-      hr = d.getHours(),
-      min = d.getMinutes()
+  const [isOpen, setIsOpen] = useToggle()
+  const [exercise, setExercise] = useState(false)
 
-    console.log(`${mm}/${dd} - ${hr}:${min}`)
-  })
+  const sortedData = data
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+    .map((record) => {
+      const d = new Date(record.date)
+      const mm = d.toLocaleString('default', { month: 'short' }),
+        dd = d.getDate(),
+        yy = d.getFullYear().toString().substr(-2)
+      return { ...record, date: `${mm} ${dd}/${yy}` }
+    })
 
   const chartData = {
-    labels: ['1', '2', '3', '4', '5', '6'],
     datasets: [
       {
-        label: '# of Red Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        data: sortedData,
         backgroundColor: 'rgb(255, 99, 132)',
-        stack: 'a',
-      },
-      {
-        label: '# of Blue Votes',
-        data: [2, 3, 20, 5, 1, 4],
-        backgroundColor: 'rgb(54, 162, 235)',
-        stack: 'a',
-      },
-      {
-        label: '# of Green Votes',
-        data: [3, 10, 13, 15, 22, 30],
-        backgroundColor: 'rgb(75, 192, 192)',
-        stack: 'a',
+        borderColor: 'rgba(255, 99, 132, 0.2)',
+        pointRadius: 5,
       },
     ],
   }
   const options = {
-    scales: {
-      xAxes: [
-        {
-          stacked: true,
-        },
-      ],
-      yAxes: [
-        {
-          stacked: true,
-        },
-      ],
+    plugins: {
+      legend: {
+        display: false,
+      },
+      // tooltip: {
+      //   callbacks: {
+      //     label: function (context) {
+      //       // console.log(context)
+      //       // return 'hello'
+      //     },
+      //   },
+      // },
+    },
+    parsing: {
+      xAxisKey: 'date',
+      yAxisKey: 'totalVolume',
+    },
+    onClick: (a, b) => {
+      if (b.length > 0) {
+        setExercise(sortedData[b[0].index])
+        setIsOpen()
+      }
     },
   }
+
   return (
-    <>
-      <div className="header">
-        <h1 className="title">Stacked Bar Chart</h1>
-      </div>
-      <Bar data={chartData} options={options} width={500} height={500} />
-    </>
+    <div>
+      <Line data={chartData} options={options} width={500} height={500} />
+      {isOpen ? <Modal exercise={exercise} setIsOpen={setIsOpen} /> : null}
+    </div>
   )
 }
 

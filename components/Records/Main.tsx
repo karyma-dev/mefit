@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import axios from 'axios'
 import _ from 'lodash'
 
+import Dropdown from './Dropdown'
 import Graph from './Graph'
 
 export default function Main() {
@@ -34,13 +35,19 @@ export default function Main() {
     (record) => record.exercise === exercise
   )
 
-  const content = errorMessage ? (
-    <h1>{errorMessage}</h1>
-  ) : (
-    <div>
-      <Graph width={500} height={500} data={filteredRecords} />
-    </div>
-  )
+  const content =
+    errorMessage || !records ? (
+      <h1>{errorMessage}</h1>
+    ) : (
+      <div>
+        <h1>{exercise}</h1>
+        <Dropdown
+          setExercise={setExercise}
+          uniqueExerciseNames={uniqueExerciseNames}
+        />
+        <Graph width={500} height={500} data={filteredRecords} />
+      </div>
+    )
 
   return <Wrapper>{content}</Wrapper>
 }
