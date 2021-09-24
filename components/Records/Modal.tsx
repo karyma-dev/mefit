@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react'
+import axios from 'axios'
 
-const Modal = ({ exercise, setIsOpen }) => {
+const Modal = ({ record, setIsOpen }) => {
+  const { date, exercise, rpe, rep, set, weight, totalVolume, _id } = record
   const el = useRef()
 
   useEffect(() => {
@@ -17,10 +19,24 @@ const Modal = ({ exercise, setIsOpen }) => {
     }
   }
 
+  const onClick = (id) => {
+    axios
+      .delete('/api/records', { data: id })
+      .then(() => console.log('response'))
+      .catch(() => console.log('error'))
+  }
+
   return (
-    <div ref={el}>
-      <h1>Modal</h1>
-    </div>
+    <ul ref={el}>
+      <li>{exercise}</li>
+      <li>{date}</li>
+      <li>RPE: {rpe}</li>
+      <li>Reps: {rep}</li>
+      <li>Sets: {set}</li>
+      <li>Weight: {weight}</li>
+      <li>Total Volume: {totalVolume}</li>
+      <button onClick={() => onClick(_id)}>Delete</button>
+    </ul>
   )
 }
 

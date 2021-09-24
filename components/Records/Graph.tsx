@@ -6,7 +6,7 @@ import Modal from './Modal'
 
 const Graph = ({ data }) => {
   const [isOpen, setIsOpen] = useToggle()
-  const [exercise, setExercise] = useState(false)
+  const [record, setRecord] = useState({})
 
   const sortedData = data
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
@@ -33,14 +33,17 @@ const Graph = ({ data }) => {
       legend: {
         display: false,
       },
-      // tooltip: {
-      //   callbacks: {
-      //     label: function (context) {
-      //       // console.log(context)
-      //       // return 'hello'
-      //     },
-      //   },
-      // },
+      tooltip: {
+        callbacks: {
+          title: function (context) {
+            return 'Title'
+          },
+          label: function (context) {
+            console.log(context.dataset.data[context.dataIndex])
+            return 'hello'
+          },
+        },
+      },
     },
     parsing: {
       xAxisKey: 'date',
@@ -48,7 +51,7 @@ const Graph = ({ data }) => {
     },
     onClick: (a, b) => {
       if (b.length > 0) {
-        setExercise(sortedData[b[0].index])
+        setRecord(sortedData[b[0].index])
         setIsOpen()
       }
     },
@@ -57,7 +60,7 @@ const Graph = ({ data }) => {
   return (
     <div>
       <Line data={chartData} options={options} width={500} height={500} />
-      {isOpen ? <Modal exercise={exercise} setIsOpen={setIsOpen} /> : null}
+      {isOpen ? <Modal record={record} setIsOpen={setIsOpen} /> : null}
     </div>
   )
 }
