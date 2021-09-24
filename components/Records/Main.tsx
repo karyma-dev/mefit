@@ -5,11 +5,13 @@ import _ from 'lodash'
 
 import Dropdown from './Dropdown'
 import Graph from './Graph'
+import { useRecordsContext } from '../../context/Records/RecordsContext'
+import { useErrorContext } from '../../context/Records/ErrorContext'
 
 export default function Main() {
-  const [errorMessage, setErrorMessage] = useState('')
-  const [records, setRecords] = useState([])
   const [exercise, setExercise] = useState('')
+  const { error, setError } = useErrorContext()
+  const { records, setRecords } = useRecordsContext()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,10 +22,10 @@ export default function Main() {
         setRecords(data)
         setExercise(data[0].exercise)
       } catch (err) {
-        setErrorMessage(err.response.data.errorMessage)
+        if (err.response.data) setError(err.response.data.errorMessage)
+        else setError('Error has occured')
       }
     }
-
     fetchData()
   }, [])
 
@@ -35,21 +37,14 @@ export default function Main() {
     (record) => record.exercise === exercise
   )
 
-  const content =
-    errorMessage || !records ? (
-      <h1>{errorMessage}</h1>
-    ) : (
-      <div>
-        <h1>{exercise}</h1>
-        <Dropdown
-          setExercise={setExercise}
-          uniqueExerciseNames={uniqueExerciseNames}
-        />
-        <Graph width={500} height={500} data={filteredRecords} />
-      </div>
-    )
-
-  return <Wrapper>{content}</Wrapper>
+  return (
+    <div>
+      <h1>{exercise}</h1>
+      <Dropdown
+        setExercise={setExercise}
+        uniqueExerciseNames={uniqueExerciseNames}
+      />
+      <Graph data={filteredRecords} />
+    </div>
+  )
 }
-
-const Wrapper = styled.div``

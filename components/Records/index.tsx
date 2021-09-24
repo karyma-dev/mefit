@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useUser } from '@auth0/nextjs-auth0'
+import { useErrorContext } from '../../context/Records/ErrorContext'
 
 import Header from '../common/Header'
 import Main from './Main'
 
 export default function Records() {
-  const [errorMessage, setErrorMessage] = useState('')
+  const { error, setError } = useErrorContext()
   const { user } = useUser()
 
   useEffect(() => {
     if (!user) {
-      setErrorMessage('Please login to view your records')
+      setError('Please login to view your records')
     } else if (user.email_verified === false) {
-      setErrorMessage('Please verify your email to view your records')
+      setError('Please verify your email to view your records')
     } else {
-      setErrorMessage('')
+      setError('')
     }
   }, [user])
 
-  let content = errorMessage ? <h1>{errorMessage}</h1> : <Main />
+  let content = error ? <h1>{error}</h1> : <Main />
 
   return (
     <>

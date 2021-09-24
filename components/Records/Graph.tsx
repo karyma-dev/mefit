@@ -39,7 +39,7 @@ const Graph = ({ data }) => {
             return 'Title'
           },
           label: function (context) {
-            console.log(context.dataset.data[context.dataIndex])
+            // console.log(context.dataset.data[context.dataIndex])
             return 'hello'
           },
         },

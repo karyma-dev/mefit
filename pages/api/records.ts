@@ -25,7 +25,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case 'GET':
       User.findOne({ email: user.email }, (err, user) => {
-        if (user === null) {
+        if (user === null || user.records.length <= 0) {
           res
             .status(400)
             .json({ errorMessage: 'Please add atleast one record' })
@@ -78,7 +78,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             ).then(() =>
               res
                 .status(201)
-                .json({ successMessage: 'Record Successfully Removed' })
+                .json({ successMessage: 'Record Successfully Removed', record })
             )
           } else {
             res.status(400).json({
